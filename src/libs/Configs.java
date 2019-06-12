@@ -1,9 +1,9 @@
 package libs;
 
 public class Configs {
-    public String appTitle = "My game";
+    public static String appTitle = "My game";
 
-    public int appWidth = 800;
-    public int appHeight = 800;
+    public static int appWidth = 800;
+    public static int appHeight = 800;
 
 }

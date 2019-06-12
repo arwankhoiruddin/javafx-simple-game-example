@@ -14,14 +14,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Configs configs = new Configs();
-        primaryStage.setTitle(configs.appTitle);
+        primaryStage.setTitle(Configs.appTitle);
 
         Group root = new Group();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
 
-        Canvas canvas = new Canvas(configs.appHeight, configs.appWidth);
+        Canvas canvas = new Canvas(Configs.appHeight, Configs.appWidth);
         root.getChildren().add(canvas);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
