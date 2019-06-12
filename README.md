@@ -2,7 +2,7 @@
 
 This repository is a simple framework for game development in JavaFX, used in Object Oriented Programming Lab at Universiti Teknologi PETRONAS, Malaysia
 
-# Can we use it for free?
+# Can I use it for free?
 
 Yes
 
@@ -14,7 +14,7 @@ This framework is developed and maintained by Arwan Ahmad Khoiruddin
 
 Yes
 
-# How we use this framework?
+# How I use this framework?
 
 ## Game Configuration
 
