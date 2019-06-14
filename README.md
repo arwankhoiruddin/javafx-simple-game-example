@@ -45,11 +45,61 @@ public class Balloon extends Sprite {
 
 ```
 
+To create other Sprite object, you must extend your new class to Sprite, copy the lines inside the Balloon constructor and modify the `imgPath` to point to your Sprite image.
+
+Say you want to create `Monkey.java`. Your class will be like this
+
+```
+package core;
+
+import libs.Sprite;
+import javafx.scene.image.Image;
+
+public class Monkey extends Sprite {
+
+    public Monkey()  {
+        super.imgPath = "/core/monkey.png";
+        super.setImage(new Image(imgPath));
+    }
+
+}
+```
+
 ## Main place to code your game
 
-The main place to code your game is in `GameCore` class. You may notice that the `GameCore` class implements `CoreFunc`, which will ensure that `GameCore` will contain all functions needed to run the game.
+The main place to code your game is in `GameCore` class. You may notice that the `GameCore` class implements `CoreFunc`, which will ensure that `GameCore` contains all functions needed to run the game.
 
-See simple example below:
+To start with your project, create `GameCore` class inside `core` package. Your code should be like following
+
+```
+package core;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
+import libs.Configs;
+import libs.CoreFunc;
+
+import java.util.ArrayList;
+
+public class GameCore implements CoreFunc {
+
+   @Override
+    public void init(GraphicsContext gc) {
+    }
+
+    @Override
+    public void animate(GraphicsContext gc, int time, ArrayList input) {
+ 
+    }
+
+    @Override
+    public void mouseClick(MouseEvent e) {
+    }
+}
+
+```
+
+See simple example below to see how to create your game in JavaFX
 
 ```
 package core;
@@ -122,6 +172,6 @@ public class GameCore implements CoreFunc {
         // mouse click event here
     }
 }
-
-
 ```
+
+Good luck with your game project in JavaFX
