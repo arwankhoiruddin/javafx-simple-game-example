@@ -16,6 +16,10 @@ Yes
 
 # How I use this framework?
 
+## Start your new Game
+
+This repository contains an example of simple "game" in JavaFX. If you want to start the new game, just remove all the files inside `core` package/folder and follow the following instructions.
+
 ## Game Configuration
 
 Some configuration of the game can be found in `Config.java` inside `libs` folder. You can modify the configurations such as:
