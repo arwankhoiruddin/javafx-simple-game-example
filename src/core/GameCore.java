@@ -6,18 +6,36 @@ import libs.CoreFunc;
 
 public class GameCore implements CoreFunc {
 
+    GameBackground gameBackground = new GameBackground();
+
+    Balloon balloon1 = new Balloon();
+    Balloon balloon2 = new Balloon();
+    Balloon balloon3 = new Balloon();
+
+    int yPos = 0;
+
     @Override
     public void init(GraphicsContext gc) {
-        Balloon balloon1 = new Balloon();
-        balloon1.resize(0.9);
-        balloon1.render(gc, 500, 500);
+        // resize the background to fit the app height
+        gameBackground.resize(Configs.appHeight);
 
-        Balloon balloon2 = new Balloon();
-        balloon2.resize(0.5);
-        balloon2.render(gc, 500, 100);
+        // make some balloon with the same size
+        double factor = 0.2;
+        balloon1.resize(factor);
+        balloon2.resize(factor);
+        balloon3.resize(factor);
+    }
 
-        gc.clearRect(0, 0, Configs.appWidth, Configs.appHeight);
-        balloon1.moveLeft(gc);
-        balloon2.moveRight(gc);
+    @Override
+    public void animate(GraphicsContext gc, int time) {
+        yPos += time;
+        int ground = Configs.appHeight - 250;
+        if (yPos > ground)
+            yPos = ground;
+
+        gameBackground.render(gc, 0, 0);
+        balloon1.render(gc, 100, yPos);
+        balloon2.render(gc, 300, yPos);
+        balloon3.render(gc, 500, yPos);
     }
 }

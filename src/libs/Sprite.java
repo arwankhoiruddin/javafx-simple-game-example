@@ -18,34 +18,20 @@ public class Sprite extends ImageView {
         this.setImage(new Image(this.imgPath, newdim, newdim, true, false));
     }
 
+    public void resize(int newSize) {
+        // check first which one is larger between height and width
+        Image tmp = new Image(this.imgPath);
+        int size;
+        if (tmp.getHeight() > tmp.getWidth())
+            this.setImage(new Image(this.imgPath, newSize, 0, true, false));
+        else
+            this.setImage(new Image(this.imgPath, 0, newSize, true, false));
+    }
+
     public void render(GraphicsContext gc, int x, int y) {
         gc.drawImage(this.getImage(), x, y);
         this.ypos = y;
         this.xpos = x;
-    }
-
-    public void moveLeft(GraphicsContext gc) {
-        int x = (int) Math.round(this.xpos - 100);
-        int y = (int) Math.round(this.ypos);
-        this.render(gc, x, y);
-    }
-
-    public void moveRight(GraphicsContext gc) {
-        int x = (int) Math.round(this.xpos + 100);
-        int y = (int) Math.round(this.ypos);
-        this.render(gc, x, y);
-    }
-
-    public void moveUp(GraphicsContext gc) {
-        int x = (int) Math.round(this.xpos);
-        int y = (int) Math.round(this.ypos - 100);
-        this.render(gc, x, y);
-    }
-
-    public void moveDown(GraphicsContext gc) {
-        int x = (int) Math.round(this.xpos);
-        int y = (int) Math.round(this.ypos + 100);
-        this.render(gc, x, y);
     }
 
 }

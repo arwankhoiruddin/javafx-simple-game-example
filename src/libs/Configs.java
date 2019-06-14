@@ -1,9 +1,11 @@
 package libs;
 
-public class Configs {
-    public static String appTitle = "My game";
+import java.util.ArrayList;
 
-    public static int appWidth = 800;
-    public static int appHeight = 800;
+public class Configs {
+    public static String appTitle = "Balloon";
+
+    public static int appWidth = 960;
+    public static int appHeight = 540;
 
 }

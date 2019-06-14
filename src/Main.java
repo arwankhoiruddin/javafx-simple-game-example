@@ -1,4 +1,5 @@
 import core.GameCore;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,12 +21,23 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
 
-        Canvas canvas = new Canvas(Configs.appHeight, Configs.appWidth);
+        Canvas canvas = new Canvas(Configs.appWidth, Configs.appHeight);
         root.getChildren().add(canvas);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        new GameCore().init(gc);
+        GameCore gameCore = new GameCore();
+
+        gameCore.init(gc);
+
+        final long startNanoTime = System.nanoTime();
+
+        new AnimationTimer() {
+            public void handle(long currentNanoTime) {
+                int t = Math.round((currentNanoTime - startNanoTime) / 1000000000);
+                gameCore.animate(gc, t);
+            }
+        }.start();
 
         primaryStage.show();
     }
