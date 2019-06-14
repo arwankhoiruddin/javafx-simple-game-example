@@ -1,6 +1,7 @@
 package core;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import libs.Configs;
 import libs.CoreFunc;
 
@@ -60,5 +61,10 @@ public class GameCore implements CoreFunc {
 
         monkey.render(gc, monkey.getxMonkey(), monkey.getyMonkey());
 
+    }
+
+    @Override
+    public void mouseClick(MouseEvent e) {
+        // mouse click event here
     }
 }

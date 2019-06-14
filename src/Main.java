@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import libs.Configs;
 
@@ -27,6 +28,8 @@ public class Main extends Application {
 
         Canvas canvas = new Canvas(Configs.appWidth, Configs.appHeight);
         root.getChildren().add(canvas);
+
+        GameCore gameCore = new GameCore();
 
         // keyboard event
         ArrayList<String> input = new ArrayList<>();
@@ -54,9 +57,17 @@ public class Main extends Application {
                 }
         );
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        // mouse event
+        scene.setOnMouseClicked(
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        gameCore.mouseClick(event);
+                    }
+                }
+        );
 
-        GameCore gameCore = new GameCore();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
 
         gameCore.init(gc);
 
