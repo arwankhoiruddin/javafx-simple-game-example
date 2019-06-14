@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import libs.Configs;
 import libs.CoreFunc;
 
+import java.util.ArrayList;
+
 public class GameCore implements CoreFunc {
 
     GameBackground gameBackground = new GameBackground();
@@ -11,6 +13,8 @@ public class GameCore implements CoreFunc {
     Balloon balloon1 = new Balloon();
     Balloon balloon2 = new Balloon();
     Balloon balloon3 = new Balloon();
+
+    Monkey monkey = new Monkey();
 
     int yPos = 0;
 
@@ -24,18 +28,37 @@ public class GameCore implements CoreFunc {
         balloon1.resize(factor);
         balloon2.resize(factor);
         balloon3.resize(factor);
+
+        monkey.resize(0.3);
+
+        // initialize with monkey and background
+        gameBackground.render(gc, 0, 0);
+        monkey.render(gc, monkey.getxMonkey(), monkey.getyMonkey());
     }
 
     @Override
-    public void animate(GraphicsContext gc, int time) {
+    public void animate(GraphicsContext gc, int time, ArrayList input) {
         yPos += time;
         int ground = Configs.appHeight - 250;
         if (yPos > ground)
             yPos = ground;
 
         gameBackground.render(gc, 0, 0);
+
         balloon1.render(gc, 100, yPos);
         balloon2.render(gc, 300, yPos);
         balloon3.render(gc, 500, yPos);
+
+        if (input.contains("UP"))
+            monkey.moveUp(gc);
+        if (input.contains("DOWN"))
+            monkey.moveDown(gc);
+        if (input.contains("LEFT"))
+            monkey.moveLeft(gc);
+        if (input.contains("RIGHT"))
+            monkey.moveRight(gc);
+
+        monkey.render(gc, monkey.getxMonkey(), monkey.getyMonkey());
+
     }
 }
