@@ -18,11 +18,19 @@ Yes
 
 ## Start your new Game
 
-This repository contains an example of simple "game" in JavaFX. If you want to start the new game, just remove all the files inside `core` package/folder and follow the following instructions.
+Your code for your game will be anything inside `core` directory. This repository contains an example of simple "game" in JavaFX. If you want to start the new game, just remove all the files inside `core` package/folder and follow the instructions below.
+
+Your code must contains at least two java files (once again, all inside `core` package):
+* `GameCore.java`
+* `YourSprite.java`
+
+More information on creating those two files can be found in the next subsections.
+
+Unless you know what you do, please do not modify anything inside `Main.java` and files inside `libs` package (except `Configs.java`).
 
 ## Game Configuration
 
-Some configuration of the game can be found in `Config.java` inside `libs` folder. You can modify the configurations such as:
+Some configuration of the game can be found in `Configs.java` inside `libs` folder. You can modify the configurations such as:
 
 * Application title (`appTitle`)
 * Application width (`appWidth`)
@@ -49,9 +57,9 @@ public class Balloon extends Sprite {
 
 ```
 
-To create other Sprite object, you must extend your new class to Sprite, copy the lines inside the Balloon constructor and modify the `imgPath` to point to your Sprite image.
+To create other Sprite object, you must extend your new class to Sprite, copy the lines inside the Balloon constructor and modify the `imgPath` to point to your Sprite image (to make the things easier, put the images inside `core` package).
 
-Say you want to create `Monkey.java`. Your class will be like this
+Say you want to create `Monkey.java`. You put an image of monkey (`monkey.png`) in `core` package and your class will be like this
 
 ```
 package core;
@@ -103,79 +111,6 @@ public class GameCore implements CoreFunc {
 
 ```
 
-See simple example below to see how to create your game in JavaFX
-
-```
-package core;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
-import libs.Configs;
-import libs.CoreFunc;
-
-import java.util.ArrayList;
-
-public class GameCore implements CoreFunc {
-
-    GameBackground gameBackground = new GameBackground();
-
-    Balloon balloon1 = new Balloon();
-    Balloon balloon2 = new Balloon();
-    Balloon balloon3 = new Balloon();
-
-    Monkey monkey = new Monkey();
-
-    int yPos = 0;
-
-    @Override
-    public void init(GraphicsContext gc) {
-        // resize the background to fit the app height
-        gameBackground.resize(Configs.appHeight);
-
-        // make some balloon with the same size
-        double factor = 0.2;
-        balloon1.resize(factor);
-        balloon2.resize(factor);
-        balloon3.resize(factor);
-
-        monkey.resize(0.3);
-
-        // initialize with monkey and background
-        gameBackground.render(gc, 0, 0);
-        monkey.render(gc, monkey.getxMonkey(), monkey.getyMonkey());
-    }
-
-    @Override
-    public void animate(GraphicsContext gc, int time, ArrayList input) {
-        yPos += time;
-        int ground = Configs.appHeight - 250;
-        if (yPos > ground)
-            yPos = ground;
-
-        gameBackground.render(gc, 0, 0);
-
-        balloon1.render(gc, 100, yPos);
-        balloon2.render(gc, 300, yPos);
-        balloon3.render(gc, 500, yPos);
-
-        if (input.contains("UP"))
-            monkey.moveUp(gc);
-        if (input.contains("DOWN"))
-            monkey.moveDown(gc);
-        if (input.contains("LEFT"))
-            monkey.moveLeft(gc);
-        if (input.contains("RIGHT"))
-            monkey.moveRight(gc);
-
-        monkey.render(gc, monkey.getxMonkey(), monkey.getyMonkey());
-
-    }
-
-    @Override
-    public void mouseClick(MouseEvent e) {
-        // mouse click event here
-    }
-}
-```
+See examples in `core` package in this repository to create the game.
 
 Good luck with your game project in JavaFX
