@@ -17,8 +17,6 @@ public class GameCore implements CoreFunc {
 
     Monkey monkey = new Monkey();
 
-    int yPos = 0;
-
     @Override
     public void init(GraphicsContext gc) {
         // resize the background to fit the app height
@@ -39,16 +37,11 @@ public class GameCore implements CoreFunc {
 
     @Override
     public void animate(GraphicsContext gc, int time, ArrayList input) {
-        yPos += time;
-        int ground = Configs.appHeight - 250;
-        if (yPos > ground)
-            yPos = ground;
-
         gameBackground.render(gc, 0, 0);
 
-        balloon1.render(gc, 100, yPos);
-        balloon2.render(gc, 300, yPos);
-        balloon3.render(gc, 500, yPos);
+        balloon1.moveDown(gc);
+        balloon2.moveDown(gc);
+        balloon3.moveDown(gc);
 
         if (input.contains("UP"))
             monkey.moveUp(gc);
@@ -58,6 +51,10 @@ public class GameCore implements CoreFunc {
             monkey.moveLeft(gc);
         if (input.contains("RIGHT"))
             monkey.moveRight(gc);
+
+        if (monkey.collide(balloon1)) balloon1.visible = false;
+        if (monkey.collide(balloon2)) balloon2.visible = false;
+        if (monkey.collide(balloon3)) balloon3.visible = false;
 
         monkey.render(gc, monkey.getxMonkey(), monkey.getyMonkey());
 

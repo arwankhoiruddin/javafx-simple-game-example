@@ -34,4 +34,26 @@ public class Sprite extends ImageView {
         this.xpos = x;
     }
 
+    public boolean collide(Sprite sprite) {
+        boolean isCollide = false;
+
+        int yBottom = this.ypos + (int) Math.round(this.getImage().getHeight());
+        int xRight = this.xpos + (int) Math.round(this.getImage().getWidth());
+
+        int spriteBottom = sprite.ypos + (int) Math.round(sprite.getImage().getHeight());
+        int spriteRight = sprite.xpos + (int) Math.round(sprite.getImage().getWidth());
+
+        if (yBottom > sprite.ypos && ypos < sprite.ypos) {
+            if (xRight > sprite.xpos && xpos < sprite.xpos)
+                isCollide = true;
+        }
+
+        if (spriteBottom > this.ypos && sprite.ypos < this.ypos) {
+            if (spriteRight > this.xpos && sprite.xpos < this.xpos)
+                isCollide = true;
+        }
+
+        return isCollide;
+    }
+
 }
