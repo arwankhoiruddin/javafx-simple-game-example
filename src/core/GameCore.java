@@ -51,6 +51,7 @@ public class GameCore implements CoreFunc {
 
         for (int i=0; i<balloons.size(); i++) {
             balloons.get(i).moveDown(gc);
+
             if (monkey.collide(balloons.get(i))) {
                 balloons.remove(i);
                 monkeyScore++;

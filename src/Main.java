@@ -8,7 +8,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import libs.Configs;
 
 import java.util.ArrayList;
@@ -81,5 +84,19 @@ public class Main extends Application {
         }.start();
 
         primaryStage.show();
+    }
+
+    MediaPlayer musicPlayer; {
+        Media mp3music = new Media(getClass().getResource(Configs.musicPath).toExternalForm());
+        musicPlayer = new MediaPlayer(mp3music);
+        musicPlayer.setAutoPlay(true);
+        musicPlayer.setVolume(0.9);
+
+        musicPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                musicPlayer.seek(Duration.ZERO);
+            }
+        });
     }
 }
