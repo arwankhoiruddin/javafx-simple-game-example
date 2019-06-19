@@ -7,7 +7,7 @@ public class Configs {
 
     public static int appWidth = 960;
     public static int appHeight = 540;
-    
+
     public static String musicPath = "/core/unity.mp3";
 
 }
