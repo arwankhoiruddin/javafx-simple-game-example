@@ -25,8 +25,10 @@ public class Balloon extends Sprite {
 
     public void moveDown(GraphicsContext gc) {
         yPos += movingStep;
-        if (yPos == Configs.appHeight)
+        if (yPos == Configs.appHeight) {
             yPos = 0;
+            xPos = new Random().nextInt(Configs.appWidth);
+        }
         if (this.visible)
             this.render(gc, xPos, yPos);
     }
